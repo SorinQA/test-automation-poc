@@ -36,7 +36,7 @@ test('Login to the Intect app 1', async ({page, request}) => {
   const myTest = await apiContext.get('/api/employmenttemplates/simple', {
     headers: {
       'Accept': 'application/json',
-      'Authorization': `Token ${tok}`,
+      'Authorization': `Token ${token}`,
     }
   });
   const r1 = await myTest.json();
