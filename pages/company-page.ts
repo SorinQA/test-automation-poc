@@ -14,6 +14,7 @@ export class CompanyPage {
   }
 
   async goToEmployeesPage() {
+    await expect(this.employeesTabButton).toBeVisible();
     await this.employeesTabButton.click();
   }
 }
