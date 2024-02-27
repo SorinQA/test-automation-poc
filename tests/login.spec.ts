@@ -25,11 +25,93 @@ test('Login to the Intect app 1', async ({page, request}) => {
   await page.routeFromHAR('./hars/fruit.har', {
     update: true,
   });
-  
+
   await intectLogin.goto();
+  
+
+  // await page.once('load', () => console.log('The login page has loaded!'));
+  // await page.waitForResponse(r => console.log(r))
+  // await page.waitForLoadState('networkidle', {'timeout': 10000});
+
   await intectLogin.login('svd@intect.io', 'Sorintest9!');
 
   await intectCompany.goToEmployeesPage();
+
+  await expect(page).toHaveURL('https://testintect.app/#/employee/general ')
+  
+  const response = await apiContext.post(`/api/auth/login`);
+  const r = await response.json();
+  // console.log('r: ', r)
+  const token = r.Token
+  console.log('Token: ', token)
+
+  const myTest = await apiContext.get('/api/employmenttemplates/simple', {
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `Token ${token}`,
+    }
+  });
+  const r1 = await myTest.json();
+  console.log('Response1: ', r1);
+});
+
+test('Login to the Intect app 2', async ({page, request}) => {
+  const intectLogin = new LoginPage(page);
+  const intectCompany = new CompanyPage(page);
+
+  await page.routeFromHAR('./hars/fruit.har', {
+    update: true,
+  });
+
+  await intectLogin.goto();
+  
+
+  // await page.once('load', () => console.log('The login page has loaded!'));
+  // await page.waitForResponse(r => console.log(r))
+  // await page.waitForLoadState('networkidle', {'timeout': 10000});
+
+  await intectLogin.login('svd@intect.io', 'Sorintest9!');
+
+  await intectCompany.goToEmployeesPage();
+
+  await expect(page).toHaveURL('https://testintect.app/#/employee/general ')
+
+  const response = await apiContext.post(`/api/auth/login`);
+  const r = await response.json();
+  // console.log('r: ', r)
+  const token = r.Token
+  console.log('Token: ', token)
+
+  const myTest = await apiContext.get('/api/employmenttemplates/simple', {
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `Token ${token}`,
+    }
+  });
+  const r1 = await myTest.json();
+  console.log('Response1: ', r1);
+});
+
+test('Login to the Intect app 3', async ({page, request}) => {
+  const intectLogin = new LoginPage(page);
+  const intectCompany = new CompanyPage(page);
+
+  await page.routeFromHAR('./hars/fruit.har', {
+    update: true,
+  });
+
+  await intectLogin.goto();
+  
+
+  // await page.once('load', () => console.log('The login page has loaded!'));
+  // await page.waitForResponse(r => console.log(r))
+  // await page.waitForLoadState('networkidle', {'timeout': 10000});
+
+  await intectLogin.login('svd@intect.io', 'Sorintest9');
+
+  await intectCompany.goToEmployeesPage();
+
+  await expect(page).toHaveURL('https://testintect.app/#/employee/general ')
 
   const response = await apiContext.post(`/api/auth/login`);
   const r = await response.json();
