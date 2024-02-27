@@ -20,7 +20,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [['html', { open: 'never' }]],
   // reporter: [['playwright-tesults-reporter', {'tesults-target': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjQzZTc0MzYxLWFiZWYtNGY0Zi05NmYxLWM1NGE2OWM5MzU1OS0xNzA4NjkzMjU2MzcwIiwiZXhwIjo0MTAyNDQ0ODAwMDAwLCJ2ZXIiOiIwIiwic2VzIjoiMThlZjFiYTYtNzQ3ZC00N2I5LThjOWEtNDZmMjVhNDQzYjA1IiwidHlwZSI6InQifQ.G4jMPla6VGMgMaJW0QhHXtCBWMhsAhDTVyu5t5YAO6M'}]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -30,7 +30,7 @@ export default defineConfig({
     // channel: 'chrome',
     baseURL: 'https://testintect.app/',
     // extraHTTPHeaders: {
-    //   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
+    //   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) /537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
       
     // //   // Authorization for login using username and password
     //   'Authorization': `Basic ${btoa("svd@intect.io:Sorintest9!")}`,
