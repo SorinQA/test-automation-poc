@@ -22,6 +22,10 @@ test('Login to the Intect app 1', async ({page, request}) => {
   const intectLogin = new LoginPage(page);
   const intectCompany = new CompanyPage(page);
 
+  await page.routeFromHAR('./hars/fruit.har', {
+    update: true,
+  });
+  
   await intectLogin.goto();
   await intectLogin.login('svd@intect.io', 'Sorintest9!');
 
