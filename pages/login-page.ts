@@ -18,6 +18,8 @@ export class LoginPage {
   }
 
   async login(username: string, password: string) {
+    await this.page.waitForLoadState('domcontentloaded');
+    // await this.page.waitForLoadState('networkidle');
     await this.username.waitFor()
     await this.username.fill(username);
     await this.password.waitFor()
