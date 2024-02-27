@@ -27,6 +27,7 @@ export default defineConfig({
     video: 'on',
     trace: 'on-first-retry',
     headless: true,
+    slowMo: 300,
     // channel: 'chrome',
     baseURL: 'https://testintect.app/',
     // extraHTTPHeaders: {
