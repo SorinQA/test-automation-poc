@@ -18,7 +18,7 @@ export class LoginPage {
   }
 
   async login(username: string, password: string) {
-    await this.page.waitForLoadState('documentloaded');
+    await this.page.waitForLoadState('domcontentloaded');
     await this.username.waitFor();
     await this.username.fill(username);
     await this.password.waitFor();
