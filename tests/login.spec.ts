@@ -21,5 +21,5 @@ test('Login to the Intect app 1', async ({page, request}, testResult) => {
   await intectLogin.login('svd@intect.io', 'Sorintest9!');
 
   await intectCompany.goToEmployeesPage();
-  await expect(page).toHaveURL('https://testintect.app/#/employee/general')
+  await expect(page).toHaveURL('https://testintect.app/#/employee/payrolldata')
 });
