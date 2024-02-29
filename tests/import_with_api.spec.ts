@@ -47,6 +47,7 @@ test('Import via API', async ({page, request}, testResult) => {
   
   expect(employmentTemplatesResponse.ok()).toBeTruthy();
   
+  console.log('Happy importing!')
   // expect(empTemplatesRes).toContainEqual(expect.objectContaining({
   //   "Id": 39451, "Name": "Fastansat"
   // })); 
