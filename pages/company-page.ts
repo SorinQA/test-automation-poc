@@ -17,7 +17,7 @@ export class CompanyPage {
   }
 
   async goto() {
-    await this.page.goto('https://testintect.app/#/employee/general');
+    await this.page.goto('https://testintect.app/#/company/general', {waitUntil: 'domcontentloaded'});
   }
 
   async goToEmployeesPage() {
