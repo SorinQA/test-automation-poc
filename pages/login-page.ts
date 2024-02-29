@@ -15,6 +15,17 @@ export class LoginPage {
 
   async goto() {
     await this.page.goto('https://testintect.app/#/login/', {waitUntil: 'domcontentloaded'});
+
+    const [response] = await Promise.all([
+      this.page.waitForResponse(res => {
+          console.log('RES: ', res)
+          return res.status() == 200
+              &&
+              res.url() == `https://api.testintect.app//api/clientminversion`
+      })
+  ]);
+  await response.finished();
+
   }
 
   async login(username: string, password: string) {
