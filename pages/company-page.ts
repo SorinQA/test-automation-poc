@@ -30,7 +30,7 @@ export class CompanyPage {
   }
 
   async more() {
-    await this.page.waitForTimeout(5000);
+    // await this.page.waitForTimeout(5000);
     await this.moreButton.waitFor();
     await this.moreButton.click();
   }
@@ -49,6 +49,6 @@ export class CompanyPage {
   async importOK() {
       await this.page.getByRole('button', { name: 'Import', exact: true }).click();
       await this.page.getByRole('button', { name: 'OK', exact: true }).click();
-      await this.page.waitForTimeout(5000);
+      // await this.page.waitForTimeout(5000);
   }
 }
