@@ -14,7 +14,7 @@ export class LoginPage {
   }
 
   async goto() {
-    await this.page.goto('https://testintect.app/#/login/');
+    await this.page.goto('https://testintect.app/#/login/', {waitUntil: 'domcontentloaded'});
   }
 
   async login(username: string, password: string) {
