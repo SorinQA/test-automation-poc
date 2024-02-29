@@ -18,7 +18,7 @@ export default defineConfig({
   /* Retry on CI only */
   // retries: process.env.CI ? 2 : 0,
   retries: 2,
-  screenshot: 'only-on-failure',
+  // screenshot: 'only-on-failure',
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
@@ -30,7 +30,7 @@ export default defineConfig({
     video: 'on',
     trace: 'on-first-retry',
     headless: true,
-    slowMo: 3000,
+    // slowMo: 5000,
     // channel: 'chrome',
     baseURL: 'https://testintect.app/',
     // extraHTTPHeaders: {
@@ -46,9 +46,38 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    // {
+    //   name: 'Google Chrome',
+    //   use: { 
+    //     ...devices['Desktop Chrome'],
+    //     channel: 'chrome',
+    //     launchOptions: {
+    //       // Put your chromium-specific args here
+    //       args: [
+    //         '--disable-web-security',
+    //         '--disable-dev-shm-usage',
+    //         '--no-sandbox',
+    //         '--ignore-certificate-errors',
+    //         '--start-maximized',]
+    //     },
+    //     video: 'on',
+    //   }
+    // },
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+        launchOptions: {
+        // Put your chromium-specific args here
+          args: [
+            '--disable-web-security',
+            '--disable-dev-shm-usage',
+            '--no-sandbox',
+            '--ignore-certificate-errors',
+          ],
+        },
+        video: 'on',
+      },
     },
 
     // {
