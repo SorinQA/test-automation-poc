@@ -13,7 +13,7 @@ test('Login to the Intect app 1', async ({page, request}, testResult) => {
   const intectLogin = new LoginPage(page);
   const intectCompany = new CompanyPage(page);
 
-  // await page.routeFromHAR('./hars/fruit.har', {
+  // await page.routeFromHAR('./hars/intectLogin.har', {
   //   update: true,
   // });
 
@@ -23,27 +23,3 @@ test('Login to the Intect app 1', async ({page, request}, testResult) => {
   await intectCompany.goToEmployeesPage();
   await expect(page).toHaveURL('https://testintect.app/#/employee/general')
 });
-
-// test('Login to the Intect app 2', async ({page, request}, testResult) => {
-//   const intectLogin = new LoginPage(page);
-//   const intectCompany = new CompanyPage(page);
-
-//   await intectLogin.goto();  
-//   // await page.waitForLoadState('networkidle', {'timeout': 30000});
-//   await intectLogin.login('svd@intect.io', 'Sorintest9!');
-
-//   await intectCompany.goToEmployeesPage();
-//   await expect(page).toHaveURL('https://testintect.app/#/employee/general')
-// });
-
-// test('Login to the Intect app 3', async ({page, request}, testResult) => {
-//   const intectLogin = new LoginPage(page);
-//   const intectCompany = new CompanyPage(page);
-
-//   await intectLogin.goto();
-//   // await page.waitForLoadState('networkidle', {'timeout': 30000});
-//   await intectLogin.login('svd@intect.io', 'Sorintest9');
-
-//   await intectCompany.goToEmployeesPage();
-//   await expect(page).toHaveURL('https://testintect.app/#/employee/general')
-// });

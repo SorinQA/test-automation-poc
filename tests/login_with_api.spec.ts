@@ -1,6 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/login-page'
-import { CompanyPage } from '../pages/company-page'
 
 let apiContext;
 
@@ -25,52 +23,46 @@ test.afterEach(async ({ page }, testInfo) => {
     console.log(`Did not run as expected, ended up at ${page.url()}`);
 });
 
-test('Login via API, get employmenttemplates (PASSING)', async ({page, request}, testResult) => {
-  const response = await apiContext.post(`/api/auth/login`);
-  const r = await response.json();
-  const token = r.Token
+test('Login via API, get employmenttemplates PASSING assertion', async ({page, request}, testResult) => {
+  const loginResponse = await apiContext.post(`/api/auth/login`);
+  const loginRes = await loginResponse.json();
+  const token = loginRes.Token
   // console.log('Token: ', token)
 
-  const myTest = await apiContext.get('/api/employmenttemplates/simple', {
+  const employmentTemplatesResponse = await apiContext.get('/api/employmenttemplates/simple', {
     headers: {
       'Accept': 'application/json',
       'Authorization': `Token ${token}`,
     }
   });
 
-  const r1 = await myTest.json();
-  // console.log('r1: ', r1);
-
-  // console.log('r1[0]: ', r1[0])
-
-  expect(myTest.ok()).toBeTruthy();
+  const empTemplatesRes = await employmentTemplatesResponse.json();
   
-  expect(r1[1]).toContainEqual(expect.objectContaining({
+  expect(employmentTemplatesResponse.ok()).toBeTruthy();
+  
+  expect(empTemplatesRes).toContainEqual(expect.objectContaining({
     "Id": 39451, "Name": "Fastansat"
   })); 
 });
 
-test('Login via API, get employmenttemplates (FAILING)', async ({page, request}, testResult) => {
-  const response = await apiContext.post(`/api/auth/login`);
-  const r = await response.json();
-  const token = r.Token
+test('Login via API, get employmenttemplates FAILING assertion', async ({page, request}, testResult) => {
+  const loginResponse = await apiContext.post(`/api/auth/login`);
+  const loginRes = await loginResponse.json();
+  const token = loginRes.Token
   // console.log('Token: ', token)
 
-  const myTest = await apiContext.get('/api/employmenttemplates/simple', {
+  const employmentTemplatesResponse = await apiContext.get('/api/employmenttemplates/simple', {
     headers: {
       'Accept': 'application/json',
       'Authorization': `Token ${token}`,
     }
   });
 
-  const r1 = await myTest.json();
-  // console.log('r1: ', r1);
-
-  // console.log('r1[0]: ', r1[0])
-
-  expect(myTest.ok()).toBeTruthy();
+  const empTemplatesRes = await employmentTemplatesResponse.json();
   
-  expect(r1[1]).toContainEqual(expect.objectContaining({
-    "Id": 39451, "Name": "Fastansatxxx"
+  expect(employmentTemplatesResponse.ok()).toBeTruthy();
+  
+  expect(empTemplatesRes).toContainEqual(expect.objectContaining({
+    "Id": 39451, "Name": "Fastansat_xxx"
   })); 
 });

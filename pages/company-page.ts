@@ -11,9 +11,8 @@ export class CompanyPage {
   constructor(page: Page) {
     this.page = page;
     this.employeesTabButton = page.locator('#EmployeeTabButton');
-    this.moreButton = page.locator('button[data-title=\'More\']');
+    this.moreButton = page.locator('button[title=\'More\'] > span');
     this.importData = page.locator('//button[text()=\' Import data \']');
-    // this.generalTab = page.locator('//div[text() = \' General \' and @class=\'TabPanel-title\']')
     this.generalTab = page.locator('#CompanyGeneralTabButton')
   }
 
@@ -31,6 +30,7 @@ export class CompanyPage {
   }
 
   async more() {
+    await this.page.waitForTimeout(5000);
     await this.moreButton.waitFor();
     await this.moreButton.click();
   }

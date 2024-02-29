@@ -26,30 +26,3 @@ test('Test import - with page objects', async ({page, request}, testResult) => {
   await intectCompany.goToEmployeesPage();
   await expect(page).toHaveURL('https://testintect.app/#/employee/payrolldata')
 });
-
-// test('Test import - without page objects', async ({ page }) => {
-//   await page.goto('https://testintect.app/#/login/');
-//   await page.getByPlaceholder('CPR / Email / Telefon').click();
-//   await page.getByPlaceholder('CPR / Email / Telefon').fill('svd@intect.io');
-//   await page.getByPlaceholder('CPR / Email / Telefon').press('Tab');
-//   await page.getByPlaceholder('Password').press('CapsLock');
-//   await page.getByPlaceholder('Password').fill('S');
-//   await page.getByPlaceholder('Password').press('CapsLock');
-//   await page.getByPlaceholder('Password').fill('Sorintest9!');
-//   await page.getByPlaceholder('Password').press('Enter');
-
-//   await page.locator('#CompanyGeneralTabButton').click();
-//   await page.getByRole('button', { name: 'More' }).getByRole('button').click();
-
-//   await page.getByRole('button', { name: 'Import data' }).click();
-
-//   await page.locator('label').filter({ hasText: 'Upload file' }).click();
-//   await page.getByRole('button', { name: 'Upload' }).click();
-//   await page.locator('input[accept=".xlsx"]').setInputFiles('Create Employee Import.xlsx');
-
-//   await page.getByRole('button', { name: 'Import', exact: true }).click();
-//   await page.getByRole('button', { name: 'OK', exact: true }).click();
-
-//   await page.waitForTimeout(5000);
-//   await page.getByRole('button', { name: 'Employees', exact: true }).click();
-// });
