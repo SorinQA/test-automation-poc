@@ -26,32 +26,23 @@ test.afterEach(async ({ page }, testInfo) => {
 
 test('Import via API', async ({page, request}, testResult) => {
   const loginResponse = await apiContext.post(`/api/auth/login`);
-  const loginRes = await loginResponse.json();
-  const token = loginRes.Token
-  // console.log('Token: ', token)
+  const loginData = await loginResponse.json();
+  const token = loginData.Token
 
-  const fileDataBase64 = fs.readFileSync('Create Employee Import.xlsx', 'base64')
-  // console.log(fileDataBase64)
-
-  const employmentTemplatesResponse = await apiContext.post('/api/import', {
+  const fileEncodedBase64 = fs.readFileSync('./test-files/Create_Employee_Import_With_Errors.xlsx', 'base64')
+  
+  const importResponse = await apiContext.post('/api/import', {
     headers: {
       'Accept': 'application/json; charset=utf-8',
       'Authorization': `Token ${token}`,
     },
-    data: {"AccountId":null,"FileBase64":`${fileDataBase64}`,"MappingId":9278,"Options":[{"Key":"save","Value":"noerror"},{"Key":"Change","Value":"Upsert"}]}
-});
-
-  const empTemplatesRes = await employmentTemplatesResponse.json();
-
-  console.log(empTemplatesRes);
+    data: {"AccountId":null,"FileBase64":`${fileEncodedBase64}`,"MappingId":9278,"Options":[{"Key":"save","Value":"noerror"},{"Key":"Change","Value":"Upsert"}]}
+  });
   
-  expect(employmentTemplatesResponse.ok()).toBeTruthy();
+  expect(importResponse.ok()).toBeTruthy();
+
+  const importData = await importResponse.json();
   
-  console.log('Happy importing!')
-  // expect(empTemplatesRes).toContainEqual(expect.objectContaining({
-  //   "Id": 39451, "Name": "Fastansat"
-  // })); 
+  expect(importData['Errors'][0]['TranslationEntity']['Key']).toBeTruthy();
+  expect(importData['Errors'][0]['TranslationEntity']).toEqual(expect.objectContaining({"Key": "ImportInvalidEmploymentTemplate"})); 
 });
-
-
-
