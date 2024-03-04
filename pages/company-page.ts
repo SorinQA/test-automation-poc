@@ -1,14 +1,13 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
 export class CompanyPage {
-  readonly page: Page;
-  readonly employees: Locator;
-  readonly employeesTabButton: Locator;
-  readonly moreButton: Locator;
-  readonly importData: Locator;
-  readonly generalTab: Locator;
+  private readonly employees: Locator;
+  private readonly employeesTabButton: Locator;
+  private readonly moreButton: Locator;
+  private readonly importData: Locator;
+  private readonly generalTab: Locator;
   
-  constructor(page: Page) {
+  constructor(public readonly page: Page) {
     this.page = page;
     this.employeesTabButton = page.locator('#EmployeeTabButton');
     this.moreButton = page.locator('button[title=\'More\'] > span');
