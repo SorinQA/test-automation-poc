@@ -24,7 +24,7 @@ test.afterEach(async ({ page }, testInfo) => {
     console.log(`Did not run as expected, ended up at ${page.url()}`);
 });
 
-test('Import via API', async ({page, request}, testResult) => {
+test('Import via API', async () => {
   const loginResponse = await apiContext.post(`/api/auth/login`);
   const loginData = await loginResponse.json();
   const token = loginData.Token

@@ -10,7 +10,7 @@ test.afterEach(async ({ page }, testInfo) => {
     console.log(`Did not run as expected, ended up at ${page.url()}`);
 });
 
-test('Test import - with page objects', async ({page, request}, testResult) => {
+test('Test import - with page objects', async ({ page }) => {
   const intectLogin = new LoginPage(page);
   const intectCompany = new CompanyPage(page);
 

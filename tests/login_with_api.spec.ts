@@ -23,11 +23,10 @@ test.afterEach(async ({ page }, testInfo) => {
     console.log(`Did not run as expected, ended up at ${page.url()}`);
 });
 
-test('Login via API, get employmenttemplates PASSING assertion', async ({page, request}, testResult) => {
+test('Login via API, get employmenttemplates PASSING assertion', async () => {
   const loginResponse = await apiContext.post(`/api/auth/login`);
   const loginRes = await loginResponse.json();
   const token = loginRes.Token
-  // console.log('Token: ', token)
 
   const employmentTemplatesResponse = await apiContext.get('/api/employmenttemplates/simple', {
     headers: {
@@ -45,11 +44,10 @@ test('Login via API, get employmenttemplates PASSING assertion', async ({page, r
   })); 
 });
 
-test('Login via API, get employmenttemplates FAILING assertion', async ({page, request}, testResult) => {
+test('Login via API, get employmenttemplates FAILING assertion', async () => {
   const loginResponse = await apiContext.post(`/api/auth/login`);
   const loginRes = await loginResponse.json();
   const token = loginRes.Token
-  // console.log('Token: ', token)
 
   const employmentTemplatesResponse = await apiContext.get('/api/employmenttemplates/simple', {
     headers: {

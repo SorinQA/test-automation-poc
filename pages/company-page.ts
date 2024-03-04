@@ -1,7 +1,6 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 
 export class CompanyPage {
-  private readonly employees: Locator;
   private readonly employeesTabButton: Locator;
   private readonly moreButton: Locator;
   private readonly importData: Locator;
@@ -29,7 +28,6 @@ export class CompanyPage {
   }
 
   async more() {
-    // await this.page.waitForTimeout(5000);
     await this.moreButton.waitFor();
     await this.moreButton.click();
   }
@@ -48,6 +46,5 @@ export class CompanyPage {
   async importOK() {
       await this.page.getByRole('button', { name: 'Import', exact: true }).click();
       await this.page.getByRole('button', { name: 'OK', exact: true }).click();
-      // await this.page.waitForTimeout(5000);
   }
 }
