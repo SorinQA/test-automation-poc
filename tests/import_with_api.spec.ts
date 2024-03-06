@@ -36,9 +36,23 @@ test('Import via API', async () => {
       'Accept': 'application/json; charset=utf-8',
       'Authorization': `Token ${token}`,
     },
-    data: {"AccountId":null,"FileBase64":`${fileEncodedBase64}`,"MappingId":9278,"Options":[{"Key":"save","Value":"noerror"},{"Key":"Change","Value":"Upsert"}]}
+    data: {
+      "AccountId": null,
+      "FileBase64": `${fileEncodedBase64}`,
+      "MappingId": 9336,
+      "Options": [
+          {
+              "Key": "save",
+              "Value": "noerror"
+          },
+          {
+              "Key": "Change",
+              "Value": "Upsert"
+          }
+      ]
+    }
   });
-  
+
   expect(importResponse.ok()).toBeTruthy();
 
   const importData = await importResponse.json();
