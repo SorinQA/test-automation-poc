@@ -17,7 +17,6 @@ export class LoginPage {
 
     const [response] = await Promise.all([
       this.page.waitForResponse(res => {
-          // console.log('RES: ', res)
           return res.status() == 200
               &&
               res.url() == `https://api.testintect.app//api/clientminversion`
