@@ -9,7 +9,7 @@ test.afterEach(async ({ page }, testInfo) => {
     console.log(`Did not run as expected, ended up at ${page.url()}`);
 });
 
-test("Login to the Intect app 1", async ({ page }) => {
+test("Login to the Intect app", async ({ page }) => {
   const intectLogin = new LoginPage(page);
   const intectCompany = new CompanyPage(page);
 

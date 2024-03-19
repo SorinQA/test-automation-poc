@@ -12,12 +12,12 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   // retries: process.env.CI ? 2 : 0,
-  retries: 2,
+  retries: 1,
   // screenshot: 'only-on-failure',
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
@@ -31,17 +31,7 @@ export default defineConfig({
     trace: 'on-first-retry',
     headless: true,
     baseURL: 'https://testintect.app/',
-    // extraHTTPHeaders: {
-    //   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) /537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
-      
-    // //   // Authorization for login using username and password
-    //   'Authorization': `Basic ${btoa("svd@intect.io:Sorintest9!")}`,
-      
-    // //   // Authorization for requests after login using token
-    // //   'Authorization': `Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InN2ZEBpbnRlY3QuaW8iLCJuYmYiOjE3MDg1MTQ1NDAsImV4cCI6MjUzNDAyMjk3MjAwLCJpYXQiOjE3MDg1MTQ1NDB9.1-7T9y0EcrlYNs6-jHQuXgy0f8pDoA0_a9CXeXXJ_Rw`,
-    // },
   },
-
   /* Configure projects for major browsers */
   projects: [
     // {
@@ -72,6 +62,7 @@ export default defineConfig({
             '--disable-dev-shm-usage',
             '--no-sandbox',
             '--ignore-certificate-errors',
+            // '--start-maximized',
           ],
         },
         video: 'on',
