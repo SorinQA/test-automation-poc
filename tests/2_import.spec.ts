@@ -15,7 +15,6 @@ test("Test import - with page objects - PASSING", async ({ page }) => {
   const intectCompany = new CompanyPage(page);
 
   await intectLogin.goto();
-  // await intectLogin.login("svd@intect.io", "Sorintest9!");
   await intectLogin.login("svd+33758675@intect.io", "Sorintest9!");
 
   await intectCompany.goToCompanyTab();
@@ -34,7 +33,6 @@ test("Test import - with page objects - FAILING", async ({ page }) => {
   const intectCompany = new CompanyPage(page);
 
   await intectLogin.goto();
-  // await intectLogin.login("svd@intect.io", "Sorintest9!");
   await intectLogin.login("svd+33758675@intect.io", "Sorintest9!");
 
   await intectCompany.goToCompanyTab();
