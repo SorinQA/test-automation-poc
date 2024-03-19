@@ -21,7 +21,7 @@ test("Test import - with page objects - PASSING", async ({ page }) => {
   await intectCompany.goToGeneralTab();
   await intectCompany.more();
   await intectCompany.importMyData();
-  await intectCompany.uploadFile('./test-files/StandardMapping (100).xlsx');
+  await intectCompany.uploadFile("./test-files/StandardMapping (100).xlsx");
   await intectCompany.importOK();
 
   await intectCompany.goToEmployeesPage();
@@ -39,7 +39,9 @@ test("Test import - with page objects - FAILING", async ({ page }) => {
   await intectCompany.goToGeneralTab();
   await intectCompany.more();
   await intectCompany.importMyData();
-  await intectCompany.uploadFile('./test-files/Create_Employee_Import_With_Errors.xlsx');
+  await intectCompany.uploadFile(
+    "./test-files/Create_Employee_Import_With_Errors.xlsx"
+  );
   await intectCompany.importOK();
 
   await intectCompany.goToEmployeesPage();
